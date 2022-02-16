@@ -1,11 +1,12 @@
 package pl.edu.amu.automaticschoolapi.student;
 
 import lombok.*;
+import pl.edu.amu.automaticschoolapi.LocalDateAttributeConverter;
 import pl.edu.amu.automaticschoolapi.group.Group;
 import pl.edu.amu.automaticschoolapi.parent.Parent;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -25,12 +26,14 @@ public class Student {
 
     private String surname;
 
+    @Column(name = "localdate", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate dob;
 
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "parent_id", nullable = false)
+    @JoinColumn(name = "parent_id")
     private Parent parent;
 
     @ManyToMany
@@ -39,4 +42,11 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id"))
     Set<Group> studentsGroups;
+
+    public Student(String name, String surname, LocalDate dob, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.dob = dob;
+        this.email = email;
+    }
 }

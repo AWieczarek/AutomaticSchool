@@ -5,7 +5,7 @@ import pl.edu.amu.automaticschoolapi.group.Group;
 import pl.edu.amu.automaticschoolapi.student.Student;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -33,4 +33,12 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher")
     private Set<Group> groups;
+
+    public Teacher(String name, String surname, LocalDate dob, String phoneNumber, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }

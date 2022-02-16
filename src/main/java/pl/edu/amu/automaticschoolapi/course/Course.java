@@ -34,4 +34,12 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<Group> groups;
 
+    public Course(String name, String description, int minAge, int maxAge, int numberOfLessons, int cost) {
+        this.name = name;
+        this.description = description;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
+        this.numberOfLessons = numberOfLessons;
+        this.cost = cost;
+    }
 }

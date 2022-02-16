@@ -6,7 +6,7 @@ import pl.edu.amu.automaticschoolapi.student.Student;
 import pl.edu.amu.automaticschoolapi.teacher.Teacher;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -38,4 +38,10 @@ public class Group {
     private LocalDate expectedEndDate;
 
     private Integer ratePerHour;
+
+    public Group(LocalDate startDate, LocalDate expectedEndDate, Integer ratePerHour) {
+        this.startDate = startDate;
+        this.expectedEndDate = expectedEndDate;
+        this.ratePerHour = ratePerHour;
+    }
 }

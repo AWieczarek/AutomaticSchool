@@ -30,4 +30,10 @@ public class Parent {
     @OneToMany(mappedBy = "parent")
     private Set<Student> students;
 
+    public Parent(String name, String surname, String phoneNumber, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }
