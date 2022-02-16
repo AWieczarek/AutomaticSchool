@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.edu.amu.automaticschoolapi.course.validation.CustomIntegerSerializer;
+import pl.edu.amu.automaticschoolapi.validation.CustomIntegerSerializer;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

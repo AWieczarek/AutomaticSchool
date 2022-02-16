@@ -1,4 +1,4 @@
-package pl.edu.amu.automaticschoolapi.course.validation;
+package pl.edu.amu.automaticschoolapi.validation;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

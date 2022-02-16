@@ -1,11 +1,12 @@
-package pl.edu.amu.automaticschoolapi.course.exception;
+package pl.edu.amu.automaticschoolapi.validation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pl.edu.amu.automaticschoolapi.course.validation.ApiErrorResponse;
+import pl.edu.amu.automaticschoolapi.course.exception.TypeMismatchException;
+import pl.edu.amu.automaticschoolapi.validation.ApiErrorResponse;
 
 import java.util.Objects;
 
