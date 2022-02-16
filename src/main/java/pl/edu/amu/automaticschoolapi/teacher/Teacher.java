@@ -1,9 +1,11 @@
-package pl.edu.amu.automaticschoolapi.parent;
+package pl.edu.amu.automaticschoolapi.teacher;
 
 import lombok.*;
+import pl.edu.amu.automaticschoolapi.group.Group;
 import pl.edu.amu.automaticschoolapi.student.Student;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -12,8 +14,8 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Table(name = "parents")
-public class Parent {
+@Table(name = "teachers")
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +25,12 @@ public class Parent {
 
     private String surname;
 
+    private LocalDate dob;
+
     private String phoneNumber;
 
     private String email;
 
-    @OneToMany(mappedBy = "parent")
-    private Set<Student> students;
-
+    @OneToMany(mappedBy = "teacher")
+    private Set<Group> groups;
 }
