@@ -14,4 +14,9 @@ public class ParentService {
     }
 
     public List<Parent> getParents(){ return parentRepository.findAll(); }
+
+    public Parent getSingleParent(long id) {
+        return parentRepository.findById(id)
+                .orElseThrow();
+    }
 }

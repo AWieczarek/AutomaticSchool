@@ -14,4 +14,9 @@ public class GroupService {
     }
 
     public List<Group> getGroups(){ return groupRepository.findAll(); }
+
+    public Group getSingleGroup(long id) {
+        return groupRepository.findById(id)
+                .orElseThrow();
+    }
 }

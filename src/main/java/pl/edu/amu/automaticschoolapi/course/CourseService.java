@@ -15,4 +15,9 @@ public class CourseService {
     }
 
     public List<Course> getCourses(){ return courseRepository.findAll(); }
+
+    public Course getSingleCourse(long id) {
+        return courseRepository.findById(id)
+                .orElseThrow();
+    }
 }
