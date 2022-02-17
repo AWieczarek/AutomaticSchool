@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Table(name = "students")
+@Table(name = "student")
 public class Student {
 
     @Id
@@ -26,7 +26,7 @@ public class Student {
 
     private String surname;
 
-    @Column(name = "localdate", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
+    @Column(name = "dob", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate dob;
 
@@ -38,7 +38,7 @@ public class Student {
 
     @ManyToMany
     @JoinTable(
-            name = "groups_student",
+            name = "student_in_groups",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id"))
     Set<Group> studentsGroups;

@@ -1,0 +1,79 @@
+DROP TABLE IF EXISTS STUDENTS_IN_GROUPS;
+DROP TABLE IF EXISTS GROUPS;
+DROP TABLE IF EXISTS COURSE;
+DROP TABLE IF EXISTS TEACHER;
+DROP TABLE IF EXISTS STUDENT;
+DROP TABLE IF EXISTS PARENT;
+
+
+
+CREATE TABLE PARENT (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(25) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(9) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE STUDENT (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(25) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    dob DATE NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    parent_id BIGINT NOT NULL
+);
+
+CREATE TABLE TEACHER (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(25) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    dob DATE NOT NULL,
+    phone_number VARCHAR(9) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE COURSE(
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(1000),
+    number_of_lessons INTEGER,
+    min_age INTEGER,
+    max_age INTEGER,
+    cost INTEGER NOT NULL
+);
+
+CREATE TABLE GROUPS(
+    id BIGINT PRIMARY KEY,
+    course_id BIGINT NOT NULL,
+    teacher_id BIGINT NOT NULL,
+    start_date DATE NOT NULL,
+    expected_end_date DATE,
+    rate_per_hour INTEGER
+);
+
+CREATE TABLE STUDENTS_IN_GROUPS(
+    group_id BIGINT NOT NULL,
+    student_id BIGINT NOT NULL
+);
+
+ALTER TABLE STUDENT
+    ADD CONSTRAINT student_parent_id
+    FOREIGN KEY (parent_id) REFERENCES parent(id);
+
+ALTER TABLE GROUPS
+    ADD CONSTRAINT group_course_id
+        FOREIGN KEY (course_id) REFERENCES course(id);
+
+ALTER TABLE GROUPS
+    ADD CONSTRAINT group_teacher_id
+        FOREIGN KEY (teacher_id) REFERENCES teacher(id);
+
+ALTER TABLE STUDENTS_IN_GROUPS
+    ADD CONSTRAINT student_group_id
+        FOREIGN KEY (group_id) REFERENCES groups(id);
+
+ALTER TABLE STUDENTS_IN_GROUPS
+    ADD CONSTRAINT group_student_id
+        FOREIGN KEY (student_id) REFERENCES student(id);
+

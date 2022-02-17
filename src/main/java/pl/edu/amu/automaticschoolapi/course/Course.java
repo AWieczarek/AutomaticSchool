@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Table(name = "courses")
+@Table(name = "course")
 public class Course {
 
     @Id

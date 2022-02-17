@@ -1,6 +1,7 @@
 package pl.edu.amu.automaticschoolapi.group;
 
 import lombok.*;
+import pl.edu.amu.automaticschoolapi.LocalDateAttributeConverter;
 import pl.edu.amu.automaticschoolapi.course.Course;
 import pl.edu.amu.automaticschoolapi.student.Student;
 import pl.edu.amu.automaticschoolapi.teacher.Teacher;
@@ -33,8 +34,12 @@ public class Group {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    @Column(name = "start_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate startDate;
 
+    @Column(name = "expected_end_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate expectedEndDate;
 
     private Integer ratePerHour;

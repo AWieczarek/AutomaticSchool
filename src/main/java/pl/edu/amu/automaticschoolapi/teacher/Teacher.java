@@ -1,6 +1,7 @@
 package pl.edu.amu.automaticschoolapi.teacher;
 
 import lombok.*;
+import pl.edu.amu.automaticschoolapi.LocalDateAttributeConverter;
 import pl.edu.amu.automaticschoolapi.group.Group;
 import pl.edu.amu.automaticschoolapi.student.Student;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Table(name = "teachers")
+@Table(name = "teacher")
 public class Teacher {
 
     @Id
@@ -25,6 +26,8 @@ public class Teacher {
 
     private String surname;
 
+    @Column(name = "dob", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate dob;
 
     private String phoneNumber;

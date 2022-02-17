@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Table(name = "parents")
+@Table(name = "parent")
 public class Parent {
 
     @Id
