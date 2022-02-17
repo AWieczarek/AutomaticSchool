@@ -1,5 +1,6 @@
 package pl.edu.amu.automaticschoolapi.parent;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import pl.edu.amu.automaticschoolapi.student.Student;
 
@@ -27,7 +28,8 @@ public class Parent {
 
     private String email;
 
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<Student> students;
 
     public Parent(String name, String surname, String phoneNumber, String email) {

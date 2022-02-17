@@ -1,5 +1,7 @@
 package pl.edu.amu.automaticschoolapi.student;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import pl.edu.amu.automaticschoolapi.LocalDateAttributeConverter;
 import pl.edu.amu.automaticschoolapi.group.Group;
@@ -32,16 +34,18 @@ public class Student {
 
     private String email;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "parent_id")
+    @JsonBackReference
     private Parent parent;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
-            name = "student_in_groups",
+            name = "groups_student",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id"))
-    Set<Group> studentsGroups;
+    @JsonIgnoreProperties("student")
+    Set<Group> studentsInGroups;
 
     public Student(String name, String surname, LocalDate dob, String email) {
         this.name = name;

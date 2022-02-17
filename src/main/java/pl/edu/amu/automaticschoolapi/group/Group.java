@@ -1,5 +1,7 @@
 package pl.edu.amu.automaticschoolapi.group;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import pl.edu.amu.automaticschoolapi.LocalDateAttributeConverter;
 import pl.edu.amu.automaticschoolapi.course.Course;
@@ -23,15 +25,18 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "course_id")
+    @JsonBackReference
     private Course course;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JsonIgnoreProperties("studentsInGroups")
     private Set<Student> student;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
+    @JsonBackReference
     private Teacher teacher;
 
     @Column(name = "start_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
