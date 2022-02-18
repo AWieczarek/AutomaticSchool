@@ -34,7 +34,7 @@ public class Group {
     @JsonIgnoreProperties("studentsInGroups")
     private Set<Student> student;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
     @JsonBackReference
     private Teacher teacher;

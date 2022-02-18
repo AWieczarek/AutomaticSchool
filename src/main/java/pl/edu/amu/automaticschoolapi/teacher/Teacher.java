@@ -34,7 +34,7 @@ public class Teacher {
 
     private String email;
 
-    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<Group> groups;
 
     public Teacher(String name, String surname, LocalDate dob, String phoneNumber, String email) {
