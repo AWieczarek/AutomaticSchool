@@ -11,7 +11,7 @@ import pl.edu.amu.automaticschoolapi.validation.CustomIntegerSerializer;
 import pl.edu.amu.automaticschoolapi.student.Student;
 import pl.edu.amu.automaticschoolapi.teacher.Teacher;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -20,13 +20,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class GroupDTO {
 
-    @NotNull
     private Course course;
 
-    @NotNull
     private Set<Student> student;
 
-    @NotNull
     private Teacher teacher;
 
     @NotNull
@@ -35,7 +32,6 @@ public class GroupDTO {
     @NotNull
     private LocalDate expectedEndDate;
 
-    @JsonDeserialize(using = CustomIntegerSerializer.class)
     private Integer ratePerHour;
 
 }

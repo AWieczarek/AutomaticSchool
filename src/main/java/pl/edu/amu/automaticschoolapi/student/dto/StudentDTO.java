@@ -9,7 +9,7 @@ import lombok.Setter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 @Getter
 @Setter
@@ -31,5 +31,9 @@ public class StudentDTO {
     @NotNull
     @Email
     private String email;
+
+    @NotNull
+    private Long parent_id;
+
 
 }
