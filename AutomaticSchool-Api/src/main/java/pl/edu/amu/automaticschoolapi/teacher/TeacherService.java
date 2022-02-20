@@ -20,7 +20,7 @@ public class TeacherService {
 
     public Teacher getSingleTeacher(long id) {
         return teacherRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new TeacherNotFoundException(id));
     }
 
     @Transactional

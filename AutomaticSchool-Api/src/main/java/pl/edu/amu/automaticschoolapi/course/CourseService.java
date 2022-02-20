@@ -3,8 +3,6 @@ package pl.edu.amu.automaticschoolapi.course;
 import org.springframework.stereotype.Service;
 import pl.edu.amu.automaticschoolapi.course.dto.CourseDTO;
 import pl.edu.amu.automaticschoolapi.course.exception.CourseNotFoundException;
-import pl.edu.amu.automaticschoolapi.group.Group;
-import pl.edu.amu.automaticschoolapi.group.exceptions.GroupNotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.List;

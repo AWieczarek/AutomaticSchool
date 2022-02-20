@@ -26,7 +26,7 @@ public class StudentService {
 
     public Student getSingleStudent(long id) {
         return studentRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new StudentNotFoundException(id));
     }
 
     @Transactional

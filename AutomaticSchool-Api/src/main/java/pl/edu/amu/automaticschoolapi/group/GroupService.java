@@ -29,7 +29,7 @@ public class GroupService {
 
     public Group getSingleGroup(long id) {
         return groupRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new GroupNotFoundException(id));
     }
 
     @Transactional

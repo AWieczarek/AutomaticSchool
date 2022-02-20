@@ -3,7 +3,6 @@ package pl.edu.amu.automaticschoolapi.parent;
 import org.springframework.stereotype.Service;
 import pl.edu.amu.automaticschoolapi.parent.dto.ParentDTO;
 import pl.edu.amu.automaticschoolapi.parent.exceptions.ParentNotFoundException;
-import pl.edu.amu.automaticschoolapi.student.exceptions.StudentNotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -21,7 +20,7 @@ public class ParentService {
 
     public Parent getSingleParent(long id) {
         return parentRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new ParentNotFoundException(id));
     }
 
     @Transactional
