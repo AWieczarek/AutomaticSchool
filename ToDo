@@ -1,0 +1,8 @@
+- DONE: naprawić dodawanie grup przez posta
+- naprawić usuwanie rodziców i chyba ogólnie usuwanie jak mają jakieś relacje
+- DONE: zrobić dodawanie uczniów do grup
+- DONE: zrobić dodawanie rodzica do ucznia
+- Ogarnąć czy te requesty nie generują za dużo zapytań do bazy danych jak tak to to naprawić
+- Dorobić zabezpieczenia np. mail zawiera małpe, czy daty są zgodne (początkowa < końcowej)
+
+Ale łatwiej chyba będzie jak się ogarnie najprotrze fomularze do frontu
