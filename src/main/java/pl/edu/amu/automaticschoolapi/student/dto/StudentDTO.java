@@ -31,9 +31,4 @@ public class StudentDTO {
     @NotNull
     @Email
     private String email;
-
-    @NotNull
-    private Long parent_id;
-
-
 }

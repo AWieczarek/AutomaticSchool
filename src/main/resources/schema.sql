@@ -46,8 +46,8 @@ CREATE TABLE COURSE(
 
 CREATE TABLE GROUPS(
     id BIGSERIAL PRIMARY KEY,
-    course_id BIGINT NOT NULL,
-    teacher_id BIGINT NOT NULL,
+    course_id BIGINT,
+    teacher_id BIGINT,
     start_date DATE NOT NULL,
     expected_end_date DATE,
     rate_per_hour INTEGER

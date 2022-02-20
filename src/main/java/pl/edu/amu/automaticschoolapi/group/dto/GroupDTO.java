@@ -1,5 +1,6 @@
 package pl.edu.amu.automaticschoolapi.group.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,8 +22,6 @@ import java.util.Set;
 public class GroupDTO {
 
     private Course course;
-
-    private Set<Student> student;
 
     private Teacher teacher;
 

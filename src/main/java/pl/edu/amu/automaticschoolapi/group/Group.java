@@ -27,7 +27,7 @@ public class Group {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "course_id")
-    @JsonBackReference
+    @JsonBackReference("course")
     private Course course;
 
     @ManyToMany(cascade = {CascadeType.MERGE})
@@ -36,7 +36,7 @@ public class Group {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
-    @JsonBackReference
+    @JsonBackReference("teacher")
     private Teacher teacher;
 
     @Column(name = "start_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
@@ -53,5 +53,9 @@ public class Group {
         this.startDate = startDate;
         this.expectedEndDate = expectedEndDate;
         this.ratePerHour = ratePerHour;
+    }
+
+    public void addStudent(Student newStudent){
+        student.add(newStudent);
     }
 }

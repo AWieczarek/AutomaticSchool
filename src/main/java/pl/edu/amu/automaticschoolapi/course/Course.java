@@ -33,7 +33,7 @@ public class Course {
     private int cost;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonManagedReference("course")
     private Set<Group> groups;
 
     public Course(String name, String description, int minAge, int maxAge, int numberOfLessons, int cost) {

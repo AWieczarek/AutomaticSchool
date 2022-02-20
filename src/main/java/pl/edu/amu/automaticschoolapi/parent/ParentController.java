@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.amu.automaticschoolapi.parent.dto.ParentDTO;
 import pl.edu.amu.automaticschoolapi.student.Student;
+import pl.edu.amu.automaticschoolapi.student.StudentService;
 import pl.edu.amu.automaticschoolapi.student.dto.StudentDTO;
 
 import javax.validation.Valid;

@@ -1,5 +1,6 @@
 package pl.edu.amu.automaticschoolapi.teacher;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import pl.edu.amu.automaticschoolapi.LocalDateAttributeConverter;
 import pl.edu.amu.automaticschoolapi.group.Group;
@@ -35,6 +36,7 @@ public class Teacher {
     private String email;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonManagedReference("teacher")
     private Set<Group> groups;
 
     public Teacher(String name, String surname, LocalDate dob, String phoneNumber, String email) {

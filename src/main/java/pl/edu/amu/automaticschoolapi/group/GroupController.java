@@ -35,6 +35,22 @@ public class GroupController {
                 .body(addedGroup);
     }
 
+    @PutMapping("{groupId}/course/{courseId}")
+    public ResponseEntity<Group> assignCourseToGroup(@PathVariable Long groupId, @PathVariable Long courseId){
+        Group groupWithCourse = groupService.assignCourseToGroup(groupId, courseId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(groupWithCourse);
+    }
+
+    @PutMapping("{groupId}/teacher/{teacherId}")
+    public ResponseEntity<Group> assignTeacherToGroup(@PathVariable Long groupId, @PathVariable Long teacherId){
+        Group groupWithTeacher = groupService.assignTeacherToGroup(groupId, teacherId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(groupWithTeacher);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Group> updateGroup(@Valid @RequestBody GroupDTO groupDTO, @PathVariable Long id){
         Group updatedGroup = groupService.updateGroup(groupDTO, id);

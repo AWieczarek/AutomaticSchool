@@ -32,6 +32,10 @@ public class Parent {
     @JsonManagedReference
     private Set<Student> students;
 
+    public void addStudent(Student student){
+        students.add(student);
+    }
+
     public Parent(String name, String surname, String phoneNumber, String email) {
         this.name = name;
         this.surname = surname;

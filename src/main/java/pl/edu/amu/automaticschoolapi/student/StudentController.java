@@ -30,12 +30,20 @@ public class StudentController {
     @GetMapping("/{id}")
     public Student getSingleStudent(@PathVariable long id) {return studentService.getSingleStudent(id);}
 
-    @PostMapping
-    public ResponseEntity<Student> addStudent(@Valid @RequestBody StudentDTO studentDTO){
-        Student addedStudent = studentService.addStudent(studentDTO);
+    @PostMapping("/parent/{id}")
+    public ResponseEntity<Student> addStudent(@Valid @RequestBody StudentDTO studentDTO, @PathVariable Long id){
+        Student addedStudent = studentService.addStudent(studentDTO, id);
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(addedStudent);
+    }
+
+    @PostMapping("{{studentId}/group/{groupId}")
+    public ResponseEntity<Student> assignStudentToGroup(@PathVariable Long studentId, @PathVariable Long groupId){
+        Student assignStudentToGroup = studentService.assignStudentToGroup(studentId, groupId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(assignStudentToGroup);
     }
 
     @PutMapping("/{id}")

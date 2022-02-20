@@ -2,6 +2,9 @@ package pl.edu.amu.automaticschoolapi.student;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.edu.amu.automaticschoolapi.group.Group;
+import pl.edu.amu.automaticschoolapi.group.GroupRepository;
+import pl.edu.amu.automaticschoolapi.group.exceptions.GroupNotFoundException;
 import pl.edu.amu.automaticschoolapi.parent.Parent;
 import pl.edu.amu.automaticschoolapi.parent.ParentRepository;
 import pl.edu.amu.automaticschoolapi.student.dto.StudentDTO;
@@ -17,8 +20,7 @@ public class StudentService {
 
     private final StudentRepository studentRepository;
     private final ParentRepository parentRepository;
-
-
+    private final GroupRepository groupRepository;
 
     public List<Student> getStudents() { return studentRepository.findAll(); }
 
@@ -28,20 +30,19 @@ public class StudentService {
     }
 
     @Transactional
-    public Student addStudent(StudentDTO studentDTO) {
+    public Student addStudent(StudentDTO studentDTO, Long id) {
         Student student = new Student();
         student.setName(studentDTO.getName());
         student.setSurname(studentDTO.getSurname());
         student.setDob(studentDTO.getDob());
         student.setEmail(studentDTO.getEmail());
-        student.setParent(getParentById(studentDTO));
+        Parent parent = parentRepository.findById(id)
+                .orElseThrow(() -> new ParentNotFoundException(id));
+        student.setParent(parent);
+        parent.addStudent(student);
         return studentRepository.save(student);
     }
 
-    private Parent getParentById(StudentDTO studentDTO) {
-        return parentRepository.findById(studentDTO.getParent_id())
-                .orElseThrow(() -> new ParentNotFoundException(studentDTO.getParent_id()));
-    }
 
     // Ogarnąć czy da się lepiej updatować pojedyńcze pola
 
@@ -53,7 +54,6 @@ public class StudentService {
         student.setSurname((studentDTO.getSurname() != null) ? studentDTO.getSurname() : student.getSurname());
         student.setDob((studentDTO.getDob() != null) ? studentDTO.getDob() : student.getDob());
         student.setEmail((studentDTO.getEmail() != null) ? studentDTO.getEmail() : student.getEmail());
-        student.setParent((studentDTO.getParent_id() == null) ? student.getParent() : getParentById(studentDTO));
         return studentRepository.save(student);
     }
 
@@ -67,5 +67,15 @@ public class StudentService {
 
     public void deleteAllStudents() {
         studentRepository.deleteAll();
+    }
+
+    @Transactional
+    public Student assignStudentToGroup(Long studentId, Long groupId) {
+        Group group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new GroupNotFoundException(groupId));
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new StudentNotFoundException(studentId));
+        group.addStudent(student);
+        return student;
     }
 }
