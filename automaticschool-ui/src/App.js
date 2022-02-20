@@ -1,10 +1,15 @@
-import './App.css';
+import React, {Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+import TeacherTable from './components/teacher.jsx';
+
+class App extends Component{
+    render() {
+        return (
+            <div className="App">
+                <TeacherTable/>
+            </div>
+        );
+    };
 }
 
 export default App;
