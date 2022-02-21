@@ -32,3 +32,9 @@ INSERT INTO GROUPS_STUDENT VALUES
                             (2, 3),
                             (2, 1),
                             (2, 5);
+
+INSERT INTO users (username, password, enabled)
+values ('admin','$2a$12$v/QlG19Nq5X0iArBPNhHtO194qe0qSypjkBJaieFH9iB1TBrLSUre', TRUE);
+
+INSERT INTO authorities (username, authority)
+values ('admin', 'USER');
