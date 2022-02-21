@@ -5,7 +5,7 @@ import paginatorFactory from 'react-bootstrap-table2-paginator';
 import * as ReactBootstrap from 'react-bootstrap';
 import moment from 'moment';
 
-class TeacherTable extends Component {
+class StudentTable extends Component {
     state = {
         teachers:[],
         columns :[{
@@ -24,21 +24,20 @@ class TeacherTable extends Component {
                 return (moment(date,"YYYY-MM-DD").format("DD-MM-YYYY"));
             }
         },{
-            dataField: 'phoneNumber',
-            text: 'Phone Number',
-            formatter: (number) => {
-                return(number.replace(/^(.{3})(.{3})(.*)$/, "$1 $2 $3"));
-            }
-        },{
             dataField: 'email',
             text: 'Email'
-        }],
+        },
+        //     {
+        //     dataField: 'parentId',
+        //     text: 'Parent'
+        // }
+        ],
         loading: false
     };
 
     componentDidMount() {
         axios.get(
-          'http://localhost:8080/api/teachers'
+          'http://localhost:8080/api/students'
         )
         .then(response => {
             this.setState({ teachers: response.data });
@@ -70,4 +69,4 @@ class TeacherTable extends Component {
     };
 }
 
-export default TeacherTable;
+export default StudentTable;

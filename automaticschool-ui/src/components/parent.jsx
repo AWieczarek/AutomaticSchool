@@ -3,9 +3,8 @@ import axios from 'axios';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginatorFactory from 'react-bootstrap-table2-paginator';
 import * as ReactBootstrap from 'react-bootstrap';
-import moment from 'moment';
 
-class TeacherTable extends Component {
+class ParentTable extends Component {
     state = {
         teachers:[],
         columns :[{
@@ -17,12 +16,6 @@ class TeacherTable extends Component {
         }, {
             dataField: 'surname',
             text: 'Surname'
-        },{
-            dataField: 'dob',
-            text: 'Date of Birth',
-            formatter: (date) => {
-                return (moment(date,"YYYY-MM-DD").format("DD-MM-YYYY"));
-            }
         },{
             dataField: 'phoneNumber',
             text: 'Phone Number',
@@ -38,7 +31,7 @@ class TeacherTable extends Component {
 
     componentDidMount() {
         axios.get(
-          'http://localhost:8080/api/teachers'
+          'http://localhost:8080/api/parents'
         )
         .then(response => {
             this.setState({ teachers: response.data });
@@ -70,4 +63,4 @@ class TeacherTable extends Component {
     };
 }
 
-export default TeacherTable;
+export default ParentTable;

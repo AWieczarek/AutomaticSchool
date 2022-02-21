@@ -3,9 +3,8 @@ import axios from 'axios';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginatorFactory from 'react-bootstrap-table2-paginator';
 import * as ReactBootstrap from 'react-bootstrap';
-import moment from 'moment';
 
-class TeacherTable extends Component {
+class CourseTable extends Component {
     state = {
         teachers:[],
         columns :[{
@@ -15,30 +14,30 @@ class TeacherTable extends Component {
             dataField: 'name',
             text: 'Name'
         }, {
-            dataField: 'surname',
-            text: 'Surname'
+            dataField: 'description',
+            text: 'Description'
         },{
-            dataField: 'dob',
-            text: 'Date of Birth',
-            formatter: (date) => {
-                return (moment(date,"YYYY-MM-DD").format("DD-MM-YYYY"));
+            dataField: 'numberOfLessons',
+            text: 'Number Of Lessons'
+        },{
+            dataField: 'minAge',
+            text: 'Min Age'
+        },{
+            dataField: 'maxAge',
+            text: 'Max Age'
+        },{
+            dataField: 'cost',
+            text: 'Cost',
+            formatter: (cost) =>{
+                return(cost + " zł");
             }
-        },{
-            dataField: 'phoneNumber',
-            text: 'Phone Number',
-            formatter: (number) => {
-                return(number.replace(/^(.{3})(.{3})(.*)$/, "$1 $2 $3"));
-            }
-        },{
-            dataField: 'email',
-            text: 'Email'
         }],
         loading: false
     };
 
     componentDidMount() {
         axios.get(
-          'http://localhost:8080/api/teachers'
+          'http://localhost:8080/api/courses'
         )
         .then(response => {
             this.setState({ teachers: response.data });
@@ -70,4 +69,4 @@ class TeacherTable extends Component {
     };
 }
 
-export default TeacherTable;
+export default CourseTable;

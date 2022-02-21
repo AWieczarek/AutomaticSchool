@@ -1,5 +1,8 @@
 package pl.edu.amu.automaticschoolapi.teacher;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import pl.edu.amu.automaticschoolapi.LocalDateAttributeConverter;
@@ -35,8 +38,9 @@ public class Teacher {
 
     private String email;
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    @JsonManagedReference("teacher")
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Group> groups;
 
     public Teacher(String name, String surname, LocalDate dob, String phoneNumber, String email) {

@@ -1,5 +1,7 @@
 package pl.edu.amu.automaticschoolapi.course;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import pl.edu.amu.automaticschoolapi.group.Group;
@@ -33,7 +35,8 @@ public class Course {
     private int cost;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-    @JsonManagedReference("course")
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Group> groups;
 
     public Course(String name, String description, int minAge, int maxAge, int numberOfLessons, int cost) {
